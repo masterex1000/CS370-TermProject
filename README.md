@@ -1,4 +1,9 @@
-# CS370 FA23 Term Project
+# CS370 FA23 Term Project : Automatic Blinds
+
+## People
+ - Collin Conrad
+ - Jared Traub
+ - John Mulligan
 
 This project implements a set of smart blinds that react to outdoor lighting
 conditions, and indoor motion detection. This way the blinds can maximize
@@ -20,4 +25,34 @@ would work well here), and a more power-efficient motion detection system (like
 a pir sensor).
 
 That being said, this project should still have enough to prove the feasability
-of a solution like this.
+of a device like this.
+
+## Parts Used
+ - Raspberry Pi
+ - Webcam (sensor) : Used to detect motion
+ - Light Dependent Resistor (Sensor) : Used to detect ouside lighting conditions
+
+## Project Architecture
+
+The project is split into a handfull of different "segments", with each running in
+their own seperate process (courtesy of python's multiprocessing). Each communicates
+via a queue with the Main process, which acts as a message bus and the primary state
+machine for the entire project.
+
+From there there are a handful of different "modules"
+
+### HAL
+
+The hardware abstraction layer allows us to abstract any hardware details away (e.g.
+for simulation or porting), and write all the code in a more general way
+
+### Motion Detection
+
+This component uses opencv to track and notify the state machine if any motion is
+detected on the webcam
+
+### Web interface/Logging
+
+This compoent runs a web-server, which will allow the user to control the blinds, as
+well as view metrics such as how often they've been triggered, as well as potential
+power savings they may have gotten
