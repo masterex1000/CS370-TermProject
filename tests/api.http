@@ -1,0 +1,11 @@
+@hostname = localhost
+@port = 20000
+@host = {{hostname}}:{{port}}
+
+###
+
+GET http://{{host}}/
+
+###
+
+GET http://{{host}}/api/blindservice/
