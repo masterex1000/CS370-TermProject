@@ -50,3 +50,16 @@ detected on the webcam
 This compoent runs a web-server, which will allow the user to control the blinds, as
 well as view metrics such as how often they've been triggered, as well as potential
 power savings they may have gotten
+
+
+## Sources Used
+
+https://pimylifeup.com/raspberry-pi-light-sensor/
+https://www.circuitbasics.com/pairing-a-light-dependent-resistor-ldr-with-an-arduino-uno/
+https://forum.arduino.cc/t/very-slow-rolling-average/665489/7
+https://askubuntu.com/questions/1408365/wsl-how-do-i-set-the-group-for-a-tty-device
+https://askubuntu.com/questions/112568/how-do-i-allow-a-non-default-user-to-use-serial-device-ttyusb0
+https://unix.stackexchange.com/questions/14354/read-write-to-a-serial-port-without-root
+https://www.cyberciti.biz/faq/find-out-linux-serial-ports-with-setserial/
+
+https://learn.microsoft.com/en-us/windows/wsl/connect-usb#install-the-usbipd-win-project
