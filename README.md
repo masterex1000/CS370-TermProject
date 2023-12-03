@@ -63,3 +63,5 @@ https://unix.stackexchange.com/questions/14354/read-write-to-a-serial-port-witho
 https://www.cyberciti.biz/faq/find-out-linux-serial-ports-with-setserial/
 
 https://learn.microsoft.com/en-us/windows/wsl/connect-usb#install-the-usbipd-win-project
+
+https://medium.com/@abbessafa1998/motion-detection-techniques-with-code-on-opencv-18ed2c1acfaf

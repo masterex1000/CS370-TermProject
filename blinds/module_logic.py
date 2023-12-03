@@ -47,7 +47,7 @@ class LogicModule:
 
         if self.values[BlindValueId.override]:
             isOpen = BlindValueId.override_state
-        elif self.values[BlindValueId.light]:
+        elif self.values[BlindValueId.light] and self.values[BlindValueId.motion]:
             isOpen = True
         
         if self.values[BlindValueId.output_state] != isOpen:
