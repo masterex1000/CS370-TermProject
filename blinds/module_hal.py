@@ -4,7 +4,14 @@ import queue
 from blindtypes import *
 import os
 
-from hal_serial import BlindHal
+
+if os.environ.get('USE_SERIAL') == 'True':
+    print("INFO: Using hal_serial for BlindHal")
+    from hal_serial import BlindHal
+else:
+    print("INFO: Using hal_fake for BlindHal")
+    from hal_fake import BlindHal
+
 
 # This is run in a seperate process
 #   inputQueue: the queue this hal receives events on
