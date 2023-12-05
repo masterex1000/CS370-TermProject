@@ -52,6 +52,24 @@ well as view metrics such as how often they've been triggered, as well as potent
 power savings they may have gotten
 
 
+## Usage
+
+1. Install all the requirments with pip (eg. `pip install -r requirments.txt`)
+
+2. NOTE: for camera support also `pip install opencv-python`
+
+3. `cd blinds`
+
+4. `python3 main.py`
+
+
+Because of the design, the camera and hardware support are locked behind
+enviroment variables, which default to mock versions if they aren't enabled.
+
+ - `USECAMERA` : Enable camera support (relies on opencv being installed)
+ - `USESERIAL` : Enable the serial HAL module (relies on an arduino running
+the provided .ino file being connected as `/dev/ttyUSB0`)
+
 ## Sources Used
 
 https://pimylifeup.com/raspberry-pi-light-sensor/
