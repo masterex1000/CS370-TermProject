@@ -2,12 +2,12 @@ import time
 from multiprocessing import Process, Queue, current_process, freeze_support
 from blindtypes import BlindEvent
 from module_hal import hal
-from module_webserver import webserver
+from module_webserver import webserver_entry
 from module_logic import logic_entry
 from module_motion import motion_entry
 
 def main():
-    MODULES = [ hal, webserver, logic_entry, motion_entry ]
+    MODULES = [ hal, webserver_entry, logic_entry, motion_entry ]
 
     # define our message queues
     moduleQueues = [Queue() for i in range(len(MODULES))]
