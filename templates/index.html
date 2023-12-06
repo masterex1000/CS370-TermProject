@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content = "width=device-width, initial-scale=.5">
+            <meta http-equv="refresh" content="2">
+
+            <title>AUTOMATIC BLINDS</title>
+        </head>
+        <style>
+            h1{
+                font-size: 4vw;
+            }
+            button {
+                padding: 1vw 3vw;
+                font-size: 2vw;
+            }
+
+        </style>
+        
+            
+            <h1 style="color: lightblue;">AUTO BLINDS</h1>
+            <button onclick="updatePage()">Update</button>
+                <script>
+                    function updatePage(){
+                        location.reload();
+                    }
+                </script>
+            <p style="color: grey;" id="displayStatus">Current Status: <span id="statusText"> {{status}}</span></p>
+            <script>
+                function updateCurrent() {
+                    document.getElementById("statusText").innerText = "{{status}}";
+                }
+    
+                setInterval(updateCurrent(), 1000);
+            </script>
+            
+        
+        
+        <body  style="background-color:white;">
+            <p style="color: grey;" id="displayStatus">Percent of Heat Blocked:<span id="statusText"> {{totalClose}}</span></p>
+            
+        </body>
+
+</html>
