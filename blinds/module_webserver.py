@@ -1,11 +1,17 @@
-from multiprocessing import Process, Queue, current_process, freeze_support
-import queue
 import asyncio
-from microdot_asyncio import Microdot
+import queue
+from multiprocessing import Process, Queue, current_process, freeze_support
 from blindtypes import *
-
+from microdot_asyncio import Microdot, Response
+from microdot_jinja import render_template
+import time
 #### Global Variables
 
+outputState = "" #variable for output state
+timeClosed = 0
+timeOpen = 0
+mockStart = time.time()
+startTime = time.time()
 # These will be updated as they change
 values = {
     BlindValueId.light: False,
@@ -24,6 +30,8 @@ values = {
 # called every time a value is changed (great place to add logging logic...)
 def valueUpdated(name : BlindValueId, value : bool):
     pass
+ 
+
 
 #### Creating the web api
 
@@ -31,17 +39,46 @@ def valueUpdated(name : BlindValueId, value : bool):
 
 blindapi = Microdot()
 
-@blindapi.get("/")
-async def hello(request):
-    return "Not Implemented", 501
+#processing for page reset
+@blindapi.route("/", methods= ['GET', 'POST'])
+async def index(request):
+
+    heatDeflected = 0.0
+    # logic for Displaying output state
+    if (values[BlindValueId.output_state] == True):
+        outputState = "Open"
+    else:
+        outputState = "Closed"
+    global timeClosed
+    global timeOpen
+    global startTime
+    global mockStart
+
+    if (values[BlindValueId.output_state] == False):
+        timeClosed += time.time() - mockStart 
+    elif (values[BlindValueId.output_state] == True):
+        timeOpen += time.time() - mockStart
+    mockStart = time.time()
+    
+    #logic for calculating time 
+    # 0.45 is proportion of head that is deflected form blinds full down 100% of time
+    heatDeflected = 0.45 * (timeClosed / (time.time() - startTime))
+    
+
+    
+    return render_template('index.html', status = outputState, totalClose = heatDeflected * 100)
 
 ### App
-
 app = Microdot()
+Response.default_content_type = 'text/html'
+
 
 @app.route('/')
+#main request for home page of app
 async def hello(request):
-    return 'Hello, world!'
+    return 'Hello world' 
+#request to set manual mode to true
+
 
 app.mount(blindapi, url_prefix="/api/blindservice")
 
