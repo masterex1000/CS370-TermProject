@@ -76,7 +76,7 @@ Response.default_content_type = 'text/html'
 @app.route('/')
 #main request for home page of app
 async def hello(request):
-    return 'Hello world' 
+    return '<a href="/api/blindservice/">Go to blinds</a>' 
 #request to set manual mode to true
 
 
